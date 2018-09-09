@@ -11,7 +11,6 @@ cases = [
 
 
 class TasksTest(TestCase):
-
     def test_cases(self):
         for tasks, n, expected in cases:
             self.assertEqual(expected, least_interval(tasks, n),
