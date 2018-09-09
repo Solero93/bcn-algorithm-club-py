@@ -13,7 +13,7 @@ cases = [
 ]
 
 
-class TasksTest(TestCase):
+class WinterIsComingTest(TestCase):
     def test_cases(self):
         for houses, heaters, expected in cases:
             self.assertEqual(expected, find_radius(houses, heaters),
