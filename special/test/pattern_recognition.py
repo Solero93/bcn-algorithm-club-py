@@ -5,7 +5,7 @@ from unsolved.pattern_recognition import check_pattern
 
 cases: List[Tuple[str, str, bool]] = [
     (
-       "a", "dog dog", False
+        "a", "dog dog", False
     ),
     (
         "aa", "dog", False

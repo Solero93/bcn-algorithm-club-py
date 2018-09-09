@@ -1,7 +1,7 @@
 from typing import List, Tuple
 from unittest import TestCase
-from unsolved.paths import has_path_sum
 
+from unsolved.paths import has_path_sum
 
 cases: List[Tuple[list, int, bool]] = [
     (

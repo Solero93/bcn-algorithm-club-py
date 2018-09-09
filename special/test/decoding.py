@@ -3,7 +3,6 @@ from unittest import TestCase
 
 from unsolved.decoding import decode_string
 
-
 cases: List[Tuple[str, str]] = [
     (
         "3[a]2[bc]", "aaabcbc"
