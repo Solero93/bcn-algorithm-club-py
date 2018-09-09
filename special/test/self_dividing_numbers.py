@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from src.numbers import self_dividing_numbers
+from src.self_dividing_numbers import self_dividing_numbers
 
 cases = [
     (
@@ -21,7 +21,7 @@ cases = [
 ]
 
 
-class NumbersTest(TestCase):
+class SelfDividingNumbersTest(TestCase):
     def test_cases(self):
         for left, right, expected in cases:
             self.assertCountEqual(expected, self_dividing_numbers(left, right),
