@@ -27,7 +27,8 @@ cases = [
 ]
 
 
-class PatternRecognitionTest(TestCase):
-    def test_pattern_recognition_cases(self):
+class PathsTest(TestCase):
+    def test_cases(self):
         for tree, sum_path, expected in cases:
-            self.assertEqual(expected, has_path_sum(tree, sum_path), msg=f'{tree}, {sum_path} -> should be {expected}')
+            self.assertEqual(expected, has_path_sum(tree, sum_path),
+                             msg=f'Output for {tree}, {sum_path} -> should be {expected}')

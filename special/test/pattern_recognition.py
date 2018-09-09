@@ -23,11 +23,18 @@ cases = [
     ),
     (
         "aaaa", "dog dog dog dog", True
+    ),
+    (
+        "abc", "dog cat fish", True
+    ),
+    (
+        "abcd", "dog cat fish fish", False
     )
 ]
 
 
 class PatternRecognitionTest(TestCase):
-    def test_pattern_recognition_cases(self):
+    def test_cases(self):
         for pattern, text, expected in cases:
-            self.assertEqual(expected, check_pattern(pattern, text), msg=f'{pattern}, {text} -> should be {expected}')
+            self.assertEqual(expected, check_pattern(pattern, text),
+                             msg=f'Output for {pattern}, {text} -> should be {expected}')
