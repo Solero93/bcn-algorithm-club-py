@@ -37,5 +37,5 @@
 from typing import List, Union
 
 
-def count_islands(map_grid: List[List[Union[0, 1]]]) -> int:
+def count_islands(map_grid: List[List[Union[int, int]]]) -> int:
     return 0
