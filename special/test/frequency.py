@@ -28,4 +28,4 @@ class FrequencyTest(TestCase):
     def test_cases(self):
         for numbers, k, expected in cases:
             self.assertCountEqual(expected, most_frequent(numbers, k),
-                                  msg=f'Output for {numbers} -> should be {expected}')
+                                  msg=f'Output for {numbers}, {k} -> should be {expected}')
