@@ -1,9 +1,8 @@
-from typing import List, Tuple
 from unittest import TestCase
 
 from unsolved.decoding import decode_string
 
-cases: List[Tuple[str, str]] = [
+cases = [
     (
         "3[a]2[bc]", "aaabcbc"
     ),

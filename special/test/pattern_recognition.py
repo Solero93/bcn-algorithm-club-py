@@ -1,9 +1,8 @@
-from typing import List, Tuple
 from unittest import TestCase
 
 from unsolved.pattern_recognition import check_pattern
 
-cases: List[Tuple[str, str, bool]] = [
+cases = [
     (
         "a", "dog dog", False
     ),
