@@ -12,7 +12,7 @@ cases = [
 ]
 
 
-class NumbersTest(TestCase):
+class StonesTest(TestCase):
     def test_cases(self):
         for jewels, stones, expected in cases:
             self.assertCountEqual(expected, num_jewels_in_stones(jewels, stones),

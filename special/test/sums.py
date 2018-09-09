@@ -14,7 +14,7 @@ cases = [
 ]
 
 
-class NumbersTest(TestCase):
+class SumsTest(TestCase):
     def setUp(self):
         self.sums = Sums([-2, 0, 3, -5, 2, -1])
 
