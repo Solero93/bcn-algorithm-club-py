@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from unsolved.letters import letter_case_permutations
+from src.letters import letter_case_permutations
 
 cases = [
     (

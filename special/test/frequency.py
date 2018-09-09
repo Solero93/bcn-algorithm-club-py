@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from unsolved.frequency import most_frequent
+from src.frequency import most_frequent
 
 cases = [
     (

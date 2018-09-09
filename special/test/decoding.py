@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from unsolved.decoding import decode_string
+from src.decoding import decode_string
 
 cases = [
     (

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from unsolved.islands import count_islands
+from src.islands import count_islands
 
 cases = [
     (

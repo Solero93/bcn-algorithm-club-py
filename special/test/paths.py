@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from unsolved.paths import has_path_sum
+from src.paths import has_path_sum
 
 cases = [
     (

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from unsolved.pattern_recognition import check_pattern
+from src.pattern_recognition import check_pattern
 
 cases = [
     (
