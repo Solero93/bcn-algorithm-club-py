@@ -45,4 +45,5 @@ def self_dividing_numbers(left: int, right: int) -> List[int]:
 
 
 def self_dividing_numbers_pythonic(left: int, right: int) -> List[int]:
-    return list(filter(lambda x: all([int(digit) != 0 and x % int(digit) == 0 for digit in str(x)]), range(left, right + 1)))
+    return list(
+        filter(lambda x: all([int(digit) != 0 and x % int(digit) == 0 for digit in str(x)]), range(left, right + 1)))

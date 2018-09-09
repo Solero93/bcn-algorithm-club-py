@@ -1,6 +1,5 @@
 from typing import List
 
-
 """
 /**
  * 1 point
