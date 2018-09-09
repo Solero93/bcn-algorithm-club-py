@@ -1,5 +1,3 @@
-from typing import List
-
 """
 /**
  * 15 points
@@ -19,6 +17,7 @@ from typing import List
  * Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
  */
 """
+from typing import List
 
 
 def most_frequent(numbers: List[int], k: int) -> List[int]:

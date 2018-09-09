@@ -1,5 +1,3 @@
-from typing import List
-
 """
 /**
  * 5 points
@@ -23,6 +21,7 @@ from typing import List
  * Output: 2
  */
 """
+from typing import List
 
 
 def majority(numbers: List[int]) -> int:

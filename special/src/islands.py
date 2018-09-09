@@ -1,5 +1,3 @@
-from typing import List, Union
-
 """
 /**
  * 10 points
@@ -36,6 +34,7 @@ from typing import List, Union
  * Output: 3
  */
 """
+from typing import List, Union
 
 
 def count_islands(map_grid: List[List[Union[0, 1]]]) -> int:

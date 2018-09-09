@@ -1,5 +1,3 @@
-from typing import List
-
 """
 /**
  * 1 point
@@ -29,6 +27,7 @@ from typing import List
  * The boundaries of each input argument are 1 <= left <= right <= 10000.
  */
 """
+from typing import List
 
 
 def self_dividing_numbers(left: int, right: int) -> List[int]:

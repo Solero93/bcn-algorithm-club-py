@@ -1,6 +1,3 @@
-from functools import reduce
-from typing import List
-
 """
 /**
  * 10 points
@@ -23,6 +20,8 @@ from typing import List
  * Output: ["12345"]
  */
 """
+from functools import reduce
+from typing import List
 
 
 def letter_case_permutations(string_to_permute: str) -> List[str]:

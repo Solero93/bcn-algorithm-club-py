@@ -1,4 +1,5 @@
 from unittest import TestCase
+
 from src.sums import Sums
 
 cases = [
@@ -20,7 +21,7 @@ class SumsTest(TestCase):
 
     def test_cases(self):
         for i, j, expected in cases:
-            self.assertCountEqual(expected, self.sums.sum_range(i, j),
-                                  msg=f'Output for {i}, {j} -> should be {expected}')
+            self.assertEqual(expected, self.sums.sum_range(i, j),
+                             msg=f'Output for {i}, {j} -> should be {expected}')
 
     # TODO Test that timing of successive calls should be less

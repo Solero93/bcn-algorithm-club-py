@@ -27,5 +27,5 @@ cases = [
 class MajorityTest(TestCase):
     def test_cases(self):
         for numbers, expected in cases:
-            self.assertCountEqual(expected, majority(numbers),
-                                  msg=f'Output for {numbers} -> should be {expected}')
+            self.assertEqual(expected, majority(numbers),
+                             msg=f'Output for {numbers} -> should be {expected}')
