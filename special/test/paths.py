@@ -4,9 +4,6 @@ from src.paths import has_path_sum
 
 cases = [
     (
-        [], 1, False
-    ),
-    (
         [1], 1, True
     ),
     (
