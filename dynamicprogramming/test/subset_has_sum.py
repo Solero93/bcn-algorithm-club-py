@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from solutions.subset_has_sum import subset_has_sum
+from src.subset_has_sum import subset_has_sum
 
 cases = [
     (
