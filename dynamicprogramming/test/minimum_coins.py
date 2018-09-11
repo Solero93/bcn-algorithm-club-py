@@ -27,7 +27,7 @@ cases = [
 ]
 
 
-class FibonacciTest(TestCase):
+class MinimumCoinsTest(TestCase):
     def test_cases(self):
         for coins, change, expected in cases:
             self.assertEqual(expected, minimum_coins(coins, change),
