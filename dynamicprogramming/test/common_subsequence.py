@@ -4,25 +4,12 @@ from src.common_subsequence import longest_common_subsequence
 
 cases = [
     (
-        "a", "a", "a"
+        "ABCDGH", "AEDFHR", 3
     ),
     (
-        "ab", "a", "a"
-    ),
-    (
-        "aba", "ab", "ab"
-    ),
-    (
-        "abac", "bbab", "ba"
-    ),
-    (
-        "abbcddd", "abbecddd", "cddd"
-    ),
-    (
-        "abcd", "bacdb", "cd"
+        "AGGTAB", "GXTXAYB", 4
     )
 ]
-
 
 class CommonSubsequenceTest(TestCase):
     def test_cases(self):
