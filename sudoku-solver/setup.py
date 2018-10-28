@@ -1,7 +1,5 @@
 from setuptools import setup
 
 setup(
-    install_requires=[
-        'dlxsudoku'
-    ]
+    install_requires=[]
 )
