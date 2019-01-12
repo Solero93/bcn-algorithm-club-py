@@ -14,7 +14,6 @@
 
 # import modules from python standard library
 import inspect
-import re
 import sys
 
 
@@ -24,7 +23,7 @@ import sys
 class Question(object):
 
     def raiseNotDefined(self):
-        print 'Method not implemented: %s' % inspect.stack()[1][3]
+        print(('Method not implemented: %s' % inspect.stack()[1][3]))
         sys.exit(1)
 
     def __init__(self, questionDict, display):
@@ -46,6 +45,7 @@ class Question(object):
     def execute(self, grades):
         self.raiseNotDefined()
 
+
 # Question in which all test cases must be passed in order to receive credit
 class PassAllTestsQuestion(Question):
 
@@ -60,6 +60,7 @@ class PassAllTestsQuestion(Question):
             grades.fail("Tests failed.")
         else:
             grades.assignFullCredit()
+
 
 class ExtraCreditPassAllTestsQuestion(Question):
     def __init__(self, questionDict, display):
@@ -78,6 +79,7 @@ class ExtraCreditPassAllTestsQuestion(Question):
         else:
             grades.assignFullCredit()
             grades.addPoints(self.extraPoints)
+
 
 # Question in which predict credit is given for test cases with a ``points'' property.
 # All other tests are mandatory and must be passed.
@@ -116,6 +118,7 @@ class Q6PartialCreditQuestion(Question):
         if False in results:
             grades.assignZeroCredit()
 
+
 class PartialCreditQuestion(Question):
     """Fails any test which returns False, otherwise doesn't effect the grades object.
     Partial credit tests will add the required points."""
@@ -130,7 +133,6 @@ class PartialCreditQuestion(Question):
                 return False
 
 
-
 class NumberPassedQuestion(Question):
     """Grade is the number of test cases passed."""
 
@@ -138,14 +140,11 @@ class NumberPassedQuestion(Question):
         grades.addPoints([f(grades) for _, f in self.testCases].count(True))
 
 
-
-
-
 # Template modeling a generic test case
 class TestCase(object):
 
     def raiseNotDefined(self):
-        print 'Method not implemented: %s' % inspect.stack()[1][3]
+        print(('Method not implemented: %s' % inspect.stack()[1][3]))
         sys.exit(1)
 
     def getPath(self):
@@ -192,7 +191,8 @@ class TestCase(object):
         extraCredit = max(0, points - maxPoints)
         regularCredit = points - extraCredit
 
-        grades.addMessage('%s: %s (%s of %s points)' % ("PASS" if points >= maxPoints else "FAIL", self.path, regularCredit, maxPoints))
+        grades.addMessage('%s: %s (%s of %s points)' % (
+            "PASS" if points >= maxPoints else "FAIL", self.path, regularCredit, maxPoints))
         if extraCredit > 0:
             grades.addMessage('EXTRA CREDIT: %s points' % (extraCredit,))
 
@@ -203,4 +203,3 @@ class TestCase(object):
 
     def addMessage(self, message):
         self.messages.extend(message.split('\n'))
-

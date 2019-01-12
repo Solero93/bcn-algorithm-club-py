@@ -12,11 +12,13 @@
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
 
-from pacman import Directions
-from game import Agent
 import random
+
 import game
 import util
+from game import Agent
+from pacman import Directions
+
 
 class LeftTurnAgent(game.Agent):
     "An agent that turns left at every opportunity"
@@ -31,6 +33,7 @@ class LeftTurnAgent(game.Agent):
         if Directions.RIGHT[current] in legal: return Directions.RIGHT[current]
         if Directions.LEFT[left] in legal: return Directions.LEFT[left]
         return Directions.STOP
+
 
 class GreedyAgent(Agent):
     def __init__(self, evalFn="scoreEvaluation"):
@@ -47,6 +50,7 @@ class GreedyAgent(Agent):
         bestScore = max(scored)[0]
         bestActions = [pair[1] for pair in scored if pair[0] == bestScore]
         return random.choice(bestActions)
+
 
 def scoreEvaluation(state):
     return state.getScore()
