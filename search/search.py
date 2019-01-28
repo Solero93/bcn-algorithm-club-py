@@ -63,7 +63,7 @@ class SearchProblem:
         util.raiseNotDefined()
 
 
-def tinyMazeSearch(problem):
+def tinyMazeSearch(problem: SearchProblem):
     """
     Returns a sequence of moves that solves tinyMaze.  For any other maze, the
     sequence of moves will be incorrect, so only use this for tinyMaze.
@@ -74,7 +74,7 @@ def tinyMazeSearch(problem):
     return [s, s, w, s, w, w, s, w]
 
 
-def depthFirstSearch(problem):
+def depthFirstSearch(problem: SearchProblem):
     """
     Search the deepest nodes in the search tree first.
 
@@ -89,16 +89,47 @@ def depthFirstSearch(problem):
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    start_point = problem.getStartState()
+    if problem.isGoalState(start_point):
+        "TO DO"
+    else:
+        s = util.Stack()
+        visited = [start_point]
+        directions = []
+        s.push([start_point])
+
+        while not s.isEmpty():
+            u = s.list[-1]
+
+            if (problem.isGoalState(u[0]) == True):
+                s.list.remove(s.list[0])
+                for child in s.list:
+                    directions.append(child[1])
+                return directions
+            else:
+                children = problem.getSuccessors(u[0])
+                allVisited = True
+                for child in children:
+                    if child[0] not in visited:
+                        visited.append(child[0])
+                        s.push(child)
+                        allVisited = False
+                        break
+
+                if (allVisited):
+                    s.pop()
+
+        print("no goal")
 
 
-def breadthFirstSearch(problem):
+
+def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
 
-def uniformCostSearch(problem):
+def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
