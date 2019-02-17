@@ -63,6 +63,64 @@ class SearchProblem:
         util.raiseNotDefined()
 
 
+class SearchNode:
+    """
+    Class that represents a Node for uninformed search algorithms
+    State -> State that the Node represents
+    Action -> the action that made Pacman arrive here
+    Parent -> the Node that it came from
+    AccumulatedCost -> Cost it took to arrive here
+    """
+
+    def __init__(self):
+        self._state = None
+        self._action = None
+        self._parent = None
+        self._accumulatedCost = 0
+
+    def setState(self, state):
+        self._state = state
+        return self
+
+    def getState(self):
+        return self._state
+
+    def setParent(self, parent):
+        self._parent = parent
+        return self
+
+    def getParent(self):
+        return self._parent
+
+    def setAction(self, action):
+        self._action = action
+        return self
+
+    def getAction(self):
+        return self._action
+
+    def setAccumulatedCost(self, cost):
+        self._accumulatedCost = cost
+        return self
+
+    def getAccumulatedCost(self):
+        return self._accumulatedCost
+
+    # For debugging purposes
+    def __str__(self):
+        s = "STATE: \n" + str(self._state) + "\n ACTION: " + str(self._action)
+        if self._parent:
+            s += "\nPARENT: \n" + str(self._parent.getState()) + "\n"
+        else:
+            s += "\nPARENT: " + "No parent" + "\n"
+        return s
+
+    def __eq__(self, other):
+        if isinstance(other, SearchNode):
+            return self.getState() == other.getState()
+        return NotImplemented
+
+
 def tinyMazeSearch(problem: SearchProblem):
     """
     Returns a sequence of moves that solves tinyMaze.  For any other maze, the
@@ -122,11 +180,50 @@ def depthFirstSearch(problem: SearchProblem):
         print("no goal")
 
 
-
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+
+    # Closed nodes, initially empty
+    bfsClosed = []
+
+    # Frontier nodes, initialize with start State
+    bfsFrontier = util.Queue()
+    bfsFrontier.push(
+        SearchNode()
+            .setState(problem.getStartState())
+    )
+
+    while True:
+        # If Frontier is Empty -> return failure
+        if bfsFrontier.isEmpty():
+            goalState = None
+            break
+
+        # Pop Node from Frontier
+        currentState = bfsFrontier.pop()
+
+        # If Node is goal state -> return Node
+        if problem.isGoalState(currentState.getState()):
+            goalState = currentState
+            break
+
+        # If currentState was not already closed, add to closed and explore (add its successors to frontier)
+        if currentState not in bfsClosed:
+            bfsClosed.append(currentState)
+            for successor in problem.getSuccessors(currentState.getState()):
+                bfsFrontier.push(
+                    SearchNode()
+                        .setState(successor[0])
+                        .setAction(successor[1])
+                        .setParent(currentState)
+                )
+
+    # If there's a solution, return actions, otherwise exit
+    if goalState:
+        return getActionsFromGoalState(goalState)
+    else:
+        print("This problem is not solvable")
+        exit(0)
 
 
 def uniformCostSearch(problem: SearchProblem):
@@ -154,3 +251,28 @@ bfs = breadthFirstSearch
 dfs = depthFirstSearch
 astar = aStarSearch
 ucs = uniformCostSearch
+
+
+# Auxiliar functions
+
+def printDataStructNodes(dataStruct):
+    """
+    Prints all the Data from Queue and Stack Data structures
+    For debugging purposes.
+    """
+    from copy import deepcopy
+    tmpDataStruct = deepcopy(dataStruct)
+    while not tmpDataStruct.isEmpty():
+        print(tmpDataStruct.pop())
+
+
+def getActionsFromGoalState(goalState):
+    """
+    Returns actions to take, given the goal node
+    """
+    finalActions = []
+    currentNode = goalState
+    while currentNode.getParent():
+        finalActions.insert(0, currentNode.getAction())
+        currentNode = currentNode.getParent()
+    return finalActions
