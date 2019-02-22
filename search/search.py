@@ -146,38 +146,57 @@ def depthFirstSearch(problem: SearchProblem):
     print "Is the start a goal?", problem.isGoalState(problem.getStartState())
     print "Start's successors:", problem.getSuccessors(problem.getStartState())
     """
-    "*** YOUR CODE HERE ***"
-    start_point = problem.getStartState()
-    if problem.isGoalState(start_point):
-        "TO DO"
+    """
+    Search the deepest nodes in the search tree first.
+    Your search algorithm needs to return a list of actions that reaches the
+    goal. Make sure to implement a graph search algorithm.
+    To get started, you might want to try some of these simple commands to
+    understand the search problem that is being passed in:
+    print "Start:", problem.getStartState()
+    print "Is the start a goal?", problem.isGoalState(problem.getStartState())
+    print "Start's successors:", problem.getSuccessors(problem.getStartState())
+    """
+    # Closed nodes, initially empty
+    dfsClosed = []
+
+    # Frontier nodes, initialize with start State
+    dfsFrontier = util.Stack()
+    dfsFrontier.push(
+        SearchNode()
+            .setState(problem.getStartState())
+    )
+
+    while True:
+        # If Frontier is Empty -> return failure
+        if dfsFrontier.isEmpty():
+            goalState = None
+            break
+
+        # Pop Node from Frontier
+        currentState = dfsFrontier.pop()
+
+        # If Node is goal state -> return Node
+        if problem.isGoalState(currentState.getState()):
+            goalState = currentState
+            break
+
+        # If currentState was not already closed, add to closed and explore (add its successors to frontier)
+        if currentState not in dfsClosed:
+            dfsClosed.append(currentState)
+            for successor in problem.getSuccessors(currentState.getState()):
+                dfsFrontier.push(
+                    SearchNode()
+                        .setState(successor[0])
+                        .setAction(successor[1])
+                        .setParent(currentState)
+                )
+
+    # If there's a solution, return actions, otherwise exit
+    if goalState:
+        return getActionsFromGoalState(goalState)
     else:
-        s = util.Stack()
-        visited = [start_point]
-        directions = []
-        s.push([start_point])
-
-        while not s.isEmpty():
-            u = s.list[-1]
-
-            if (problem.isGoalState(u[0]) == True):
-                s.list.remove(s.list[0])
-                for child in s.list:
-                    directions.append(child[1])
-                return directions
-            else:
-                children = problem.getSuccessors(u[0])
-                allVisited = True
-                for child in children:
-                    if child[0] not in visited:
-                        visited.append(child[0])
-                        s.push(child)
-                        allVisited = False
-                        break
-
-                if (allVisited):
-                    s.pop()
-
-        print("no goal")
+        print("This problem is not solvable")
+        exit(0)
 
 
 def breadthFirstSearch(problem: SearchProblem):
@@ -242,8 +261,51 @@ def nullHeuristic(state, problem=None):
 
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    # Closed nodes, initially empty
+    astarClosed = []
+
+    # Frontier nodes, initialize with start State
+    astarFrontier = util.PriorityQueueWithFunction(
+        lambda state:
+        state.getAccumulatedCost() + heuristic(state.getState(), problem)
+    )
+    astarFrontier.push(
+        SearchNode()
+            .setState(problem.getStartState())
+    )
+
+    while True:
+        # If Frontier is Empty -> return failure
+        if astarFrontier.isEmpty():
+            goalState = None
+            break
+
+        # Pop Node from Frontier
+        currentState = astarFrontier.pop()
+
+        # If Node is goal state -> return Node
+        if (problem.isGoalState(currentState.getState())):
+            goalState = currentState
+            break
+
+        # If currentState was not already closed, add to closed and explore (add its successors to frontier)
+        if currentState not in astarClosed:
+            astarClosed.append(currentState)
+            for successor in problem.getSuccessors(currentState.getState()):
+                astarFrontier.push(
+                    SearchNode()
+                        .setState(successor[0])
+                        .setAction(successor[1])
+                        .setParent(currentState)
+                        .setAccumulatedCost(currentState.getAccumulatedCost() + successor[2])
+                )
+
+    # If there's a solution, return actions, otherwise exit
+    if goalState:
+        return getActionsFromGoalState(goalState)
+    else:
+        print("This problem is not solvable")
+        exit(0)
 
 
 # Abbreviations
